@@ -1,0 +1,1660 @@
+{
+	"info": {
+		"_postman_id": "f9081c7c-851a-4140-a34e-53d028b9b9b4",
+		"name": "Sprint 4 - Testes de API Completos",
+		"description": "Collection completa com todos os casos de teste dos Requisitos 1 e 2, incluindo a correção do 'productsWeight 3.2'.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49691594",
+		"_collection_link": "https://analicep584-1799887.postman.co/workspace/380fc82c-f5db-4448-8bc8-ee451d6c0d9b/collection/49691594-f9081c7c-851a-4140-a34e-53d028b9b9b4?action=share&source=collection_link&creator=49691594"
+	},
+	"item": [
+		{
+			"name": "Requisito 1: POST /api/v1/kits/:id/products (Casos 1-19)",
+			"item": [
+				{
+					"name": "1. Adicionar produtos existentes a um kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Adicionar o mesmo produto novamente ao kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": 3\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. POST - Parâmetro id aceita letras indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": \"ABC\",\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. POST - Parâmetro id aceita símbolos indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": \"@#$\",\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. POST - Parâmetro id aceita string vazia indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": \"\",\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. POST - Parâmetro id aceita valor muito longo indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": \"12345678901234567890\",\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. POST - Parâmetro quantity aceita letras indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": \"ABC\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. POST - Parâmetro quantity aceita símbolos indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": \"@#$\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. POST - Parâmetro quantity aceita string vazia indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": \"\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. POST - Parâmetro quantity aceita valor muito longo indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1,\n      \"quantity\": \"12345678901234567890\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. POST - Parâmetro productsList aceita matriz vazia indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. POST - Parâmetro productsList aceita objeto em vez de matriz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": {\"id\": 1, \"quantity\": 2}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. POST - Parâmetro productsList aceita string vazia indevidamente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. POST - Kit criado sem parâmetro id no productsList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"quantity\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. POST - Kit criado sem parâmetro quantity no productsList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\n      \"id\": 1\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. POST - Kit criado sem parâmetro productsList no body",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17. Adicionar 29 itens a um Kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 1}, {\"id\": 3, \"quantity\": 1},\n    {\"id\": 4, \"quantity\": 1}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 1},\n    {\"id\": 7, \"quantity\": 1}, {\"id\": 8, \"quantity\": 1}, {\"id\": 9, \"quantity\": 1},\n    {\"id\": 10, \"quantity\": 1}, {\"id\": 11, \"quantity\": 1}, {\"id\": 12, \"quantity\": 1},\n    {\"id\": 13, \"quantity\": 1}, {\"id\": 14, \"quantity\": 1}, {\"id\": 15, \"quantity\": 1},\n    {\"id\": 16, \"quantity\": 1}, {\"id\": 17, \"quantity\": 1}, {\"id\": 18, \"quantity\": 1},\n    {\"id\": 19, \"quantity\": 1}, {\"id\": 20, \"quantity\": 1}, {\"id\": 21, \"quantity\": 1},\n    {\"id\": 22, \"quantity\": 1}, {\"id\": 23, \"quantity\": 1}, {\"id\": 24, \"quantity\": 1},\n    {\"id\": 25, \"quantity\": 1}, {\"id\": 26, \"quantity\": 1}, {\"id\": 27, \"quantity\": 1},\n    {\"id\": 28, \"quantity\": 1}, {\"id\": 29, \"quantity\": 1}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18. Adicionar 30 itens a um Kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 1}, {\"id\": 3, \"quantity\": 1},\n    {\"id\": 4, \"quantity\": 1}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 1},\n    {\"id\": 7, \"quantity\": 1}, {\"id\": 8, \"quantity\": 1}, {\"id\": 9, \"quantity\": 1},\n    {\"id\": 10, \"quantity\": 1}, {\"id\": 11, \"quantity\": 1}, {\"id\": 12, \"quantity\": 1},\n    {\"id\": 13, \"quantity\": 1}, {\"id\": 14, \"quantity\": 1}, {\"id\": 15, \"quantity\": 1},\n    {\"id\": 16, \"quantity\": 1}, {\"id\": 17, \"quantity\": 1}, {\"id\": 18, \"quantity\": 1},\n    {\"id\": 19, \"quantity\": 1}, {\"id\": 20, \"quantity\": 1}, {\"id\": 21, \"quantity\": 1},\n    {\"id\": 22, \"quantity\": 1}, {\"id\": 23, \"quantity\": 1}, {\"id\": 24, \"quantity\": 1},\n    {\"id\": 25, \"quantity\": 1}, {\"id\": 26, \"quantity\": 1}, {\"id\": 27, \"quantity\": 1},\n    {\"id\": 28, \"quantity\": 1}, {\"id\": 29, \"quantity\": 1}, {\"id\": 30, \"quantity\": 1}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19. Adicionar 31 itens a um Kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsList\": [\n    {\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 1}, {\"id\": 3, \"quantity\": 1},\n    {\"id\": 4, \"quantity\": 1}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 1},\n    {\"id\": 7, \"quantity\": 1}, {\"id\": 8, \"quantity\": 1}, {\"id\": 9, \"quantity\": 1},\n    {\"id\": 10, \"quantity\": 1}, {\"id\": 11, \"quantity\": 1}, {\"id\": 12, \"quantity\": 1},\n    {\"id\": 13, \"quantity\": 1}, {\"id\": 14, \"quantity\": 1}, {\"id\": 15, \"quantity\": 1},\n    {\"id\": 16, \"quantity\": 1}, {\"id\": 17, \"quantity\": 1}, {\"id\": 18, \"quantity\": 1},\n    {\"id\": 19, \"quantity\": 1}, {\"id\": 20, \"quantity\": 1}, {\"id\": 21, \"quantity\": 1},\n    {\"id\": 22, \"quantity\": 1}, {\"id\": 23, \"quantity\": 1}, {\"id\": 24, \"quantity\": 1},\n    {\"id\": 25, \"quantity\": 1}, {\"id\": 26, \"quantity\": 1}, {\"id\": 27, \"quantity\": 1},\n    {\"id\": 28, \"quantity\": 1}, {\"id\": 29, \"quantity\": 1}, {\"id\": 30, \"quantity\": 1},\n    {\"id\": 1, \"quantity\": 1}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits/:id/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits",
+								":id",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar um kit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Teste de 29\",\r\n    \"cardId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/kits",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"kits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requisito 2: POST /order-and-go/v1/delivery (Casos 1-32)",
+			"item": [
+				{
+					"name": "1. deliveryTime 7 - Fora do limite inferior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 7,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. deliveryTime 8 - Limite inferior válido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 8,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. deliveryTime 9",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 9,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. deliveryTime 21",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 21,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. deliveryTime 22 - Limite superior válido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 22,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. deliveryTime 23 - Fora do limite superior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 23,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. productsWeight 0 - Inválido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. productsWeight 1 - Limite inferior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. productsWeight 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. productsWeight 2.9",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 2.9\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. productsWeight 3 - Mudança de faixa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. productsWeight 3.1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 3.1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. productsWeight 3.2 (Corrigido)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 3.2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. productsWeight 5.9",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 5.9\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. productsWeight 6 - Limite superior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 6\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. productsWeight 6.1 - Acima do limite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": 6.1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17. productsCount -1 - Valor negativo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": -1,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18. productsCount 0",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 0,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19. productsCount 1 - Limite inferior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 1,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20. productsCount 7",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 7,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "21. productsCount 8 - Mudança de faixa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 8,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "22. productsCount 9",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 9,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "23. productsCount 10",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 10,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "24. productsCount 14",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 14,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "25. productsCount 15 - Limite superior",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 15,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26. productsCount 16 - Acima do limite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 16,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "27. productsWeight com string vazia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5,\n  \"productsWeight\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "28. deliveryTime com string vazia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": \"\",\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "29. productsCount com string vazia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": \"\",\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "30. Sem parâmetro productsWeight",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsCount\": 5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31. Sem parâmetro productsCount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryTime\": 10,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "32. Sem parâmetro deliveryTime",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productsCount\": 5,\n  \"productsWeight\": 3\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order-and-go/v1/delivery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order-and-go",
+								"v1",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://cnt-d7d42b71-bddc-4cd3-ade1-e8e3c5dec49b.containerhub.tripleten-services.com"
+		}
+	]
+}
